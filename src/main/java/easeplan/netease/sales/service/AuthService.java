@@ -3,9 +3,13 @@ package easeplan.netease.sales.service;
 import com.google.common.collect.ImmutableMap;
 import easeplan.netease.sales.json.JUser;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * @author huangzw
@@ -15,20 +19,45 @@ import java.util.Optional;
 @Component
 public class AuthService implements IAuthService {
     private static Map<String, String> PASSWORD_MAP = ImmutableMap.of(
-            "buyer", "reyub",
-            "seller", "relles"
+            "buyer", DigestUtils.md5DigestAsHex("reyub".getBytes()).toUpperCase(),
+            "seller", DigestUtils.md5DigestAsHex("relles".getBytes()).toUpperCase()
     );
     private static Map<String, JUser> USER_MAP = ImmutableMap.of(
-            "buyer", new JUser("buyer", "buyer"),
-            "seller", new JUser("seller", "seller")
+            "buyer", new JUser("buyer", "有钱的金主", "buyer"),
+            "seller", new JUser("seller", "叮当猫的口袋", "seller")
     );
 
     @Override
-    public Optional<JUser> auth(String username, String password) {
-        JUser user = null;
-        if (PASSWORD_MAP.containsKey(username) && PASSWORD_MAP.get(username).equals(password)) {
-            user = USER_MAP.get(username);
+    public boolean checkLoginInfo(String username, String password) {
+        return  (PASSWORD_MAP.containsKey(username) && password != null && PASSWORD_MAP.get(username).equals(password.toUpperCase()));
+    }
+
+    @Override
+    public void addJUserCookie(String username, HttpServletResponse response) {
+        Cookie cookie = new Cookie("identity", username);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(-1);
+        response.addCookie(cookie);
+    }
+
+    @Override
+    public Optional<JUser> getCookieJUser(Cookie[] cookies) {
+        if (cookies != null) {
+            Optional<Cookie> identityCookieOptional = Stream.of(cookies).filter(cookie -> "identity".equals(cookie.getName())).findFirst();
+            if (identityCookieOptional.isPresent()) {
+                return Optional.ofNullable(USER_MAP.get(identityCookieOptional.get().getValue()));
+            }
         }
-        return Optional.ofNullable(user);
+        return Optional.empty();
+    }
+
+    @Override
+    public void removeLogin(HttpServletResponse response) {
+        Cookie cookie = new Cookie("identity", "");
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
     }
 }

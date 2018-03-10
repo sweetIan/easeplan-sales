@@ -1,12 +1,13 @@
 <header class="navbar bg-light">
     <div class="nav flex-row">
+        <#if flag??> happy! </#if>
     <#if user??>
         <#if user.role == 'seller'>
             卖家
         <#else>
             买家
         </#if>
-        <span class="name">${user.username}</span>
+        <span class="name">${user.nickname}</span>
         ，你好！
         <a class="nav-item" href="/logout">[退出]</a>
     <#else>

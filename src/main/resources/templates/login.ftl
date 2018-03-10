@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
-<#include "/include/head.ftl">
+<#include "./include/head.ftl">
 <body>
-<#include "/include/support.ftl">
-<#include "/include/header.ftl">
-<form class="m-form m-form-ht n-login" id="loginForm" onsubmit="return false;" autocomplete="off">
+<#include "./include/support.ftl">
+<#include "./include/header.ftl">
+<div class="m-form m-form-ht n-login" id="loginForm">
     <div class="fmitem">
         <label class="fmlab">用户名：</label>
         <div class="fmipt">
-            <input class="u-ipt" name="userName" autofocus/>
+            <input class="u-ipt" id="username" autofocus/>
         </div>
     </div>
     <div class="fmitem">
         <label class="fmlab">密码：</label>
         <div class="fmipt">
-            <input class="u-ipt" type="password" name="password"/>
+            <input class="u-ipt" type="password" id="password"/>
         </div>
+    </div>
+    <div class="" style="min-height: 50px">
+        <label class="fmlab" id="errorLabel" style="display: none; color: red">用户名或密码错误！</label>
     </div>
     <div class="fmitem fmitem-nolab fmitem-btn">
         <div class="fmipt">
-            <button type="submit" class="u-btn u-btn-primary u-btn-lg u-btn-block">登 录</button>
+            <button id="submitBtn" class="u-btn u-btn-primary u-btn-lg u-btn-block">登 录</button>
         </div>
     </div>
-</form>
-<#include "/include/footer.ftl">
-<script type="text/javascript" src="/js/md5.js"></script>
-<script type="text/javascript" src="/js/global.js"></script>
-<script type="text/javascript" src="/js/pageLogin.js"></script>
+</div>
+<#include "./include/footer.ftl">
+<script type="text/javascript" src="/static/js/md5.js"></script>
+<#--<script type="text/javascript" src="/static/js/global.js"></script>-->
+<script type="text/javascript" src="/static/js/pageLogin.js"></script>
 </body>
 </html>

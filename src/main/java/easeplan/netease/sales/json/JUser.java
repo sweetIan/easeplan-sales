@@ -12,5 +12,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class JUser {
     private String username;
+    private String nickname;
     private String role;
 }

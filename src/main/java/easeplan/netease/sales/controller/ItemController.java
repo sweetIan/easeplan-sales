@@ -1,6 +1,6 @@
 package easeplan.netease.sales.controller;
 
-import easeplan.netease.sales.json.JProduct;
+import easeplan.netease.sales.json.ItemDetail;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,13 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
  * @since <pre>2018/3/11</pre>
  */
 @Controller
-public class ProductController {
+public class ItemController {
     @RequestMapping(path = "/detail/{id}", method = RequestMethod.GET)
     public ModelAndView detailPage(
             @PathVariable String id
     ) {
         ModelAndView mav = new ModelAndView("detail");
-        mav.addObject("product", JProduct.sample());
+        mav.addObject("product", ItemDetail.sample());
         return mav;
     }
 
@@ -27,7 +27,7 @@ public class ProductController {
     ) {
         ModelAndView mav = new ModelAndView("edit");
         mav.addObject("edit", true);
-        mav.addObject("product", JProduct.sample());
+        mav.addObject("product", ItemDetail.sample());
         return mav;
     }
 

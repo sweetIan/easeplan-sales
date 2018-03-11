@@ -14,7 +14,8 @@
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 if (xhttp.status == 200) {
-                    window.location = "/";
+                    var url = document.getElementById("referer").value;
+                    window.location = url;
                 }
                 else {
                     showErrorLabel();

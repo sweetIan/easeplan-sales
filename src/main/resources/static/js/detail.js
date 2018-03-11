@@ -1,8 +1,8 @@
 (function (window, document) {
     var doBuy = function(e) {
         var ele = e.target;
-        var buy = ele && ele.dataset.buy;
-        if (buy) {
+        var id = ele && ele.dataset.buy;
+        if (id) {
             var r = confirm("确定将物品放入购物车？");
             if (r == true) {
                 var xhr = new XMLHttpRequest();
@@ -16,9 +16,9 @@
                         }
                     }
                 };
-                xhr.open("POST", "/api/buy", true);
+                xhr.open("POST", "/api/cart/" + id, true);
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhr.send("id=" + buy);
+                xhr.send();
             }
         }
     }

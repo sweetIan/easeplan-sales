@@ -3,13 +3,13 @@ package easeplan.netease.sales.controller;
 import easeplan.netease.sales.service.IAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * @author huangzw
@@ -22,8 +22,17 @@ public class LoginController {
     IAuthService authService;
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
-    public String loginPage() {
-        return "login";
+    public ModelAndView loginPage(
+            @RequestHeader(name = "Referer", required = false, defaultValue = "/") String referer
+    ) {
+        ModelAndView mav = new ModelAndView("login");
+        try {
+            if (!new URI(referer).getPath().startsWith("/login")) {
+                mav.addObject("referer", referer);
+            }
+        } catch (URISyntaxException e) {
+        }
+        return mav;
     }
 
     @RequestMapping(path = "/logout", method = RequestMethod.GET)

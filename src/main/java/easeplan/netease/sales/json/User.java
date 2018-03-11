@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class JUser {
+public class User {
     private String username;
     private String nickname;
     private String role;

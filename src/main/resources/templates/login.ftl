@@ -2,8 +2,8 @@
 <html>
 <#include "./include/head.ftl">
 <body>
-<#include "./include/support.ftl">
 <#include "./include/header.ftl">
+<input type="hidden" id="referer" value="${referer!"/"}">
 <div class="m-form m-form-ht n-login" id="loginForm">
     <div class="fmitem">
         <label class="fmlab">用户名：</label>
@@ -28,7 +28,6 @@
 </div>
 <#include "./include/footer.ftl">
 <script type="text/javascript" src="/static/js/md5.js"></script>
-<#--<script type="text/javascript" src="/static/js/global.js"></script>-->
-<script type="text/javascript" src="/static/js/pageLogin.js"></script>
+<script type="text/javascript" src="/static/js/login.js"></script>
 </body>
 </html>

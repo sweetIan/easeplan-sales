@@ -26,7 +26,7 @@
                     </#if>
                 </#if>
                 <#if user?? && user.role=="seller">
-                <a href="/edit?id=${product.id}" class="u-btn u-btn-primary">编 辑</a>
+                <a href="/edit/${product.id}" class="u-btn u-btn-primary">编 辑</a>
                 </#if>
             </div>
         </div>
@@ -40,6 +40,6 @@
     </#if>
 </div>
 <#include "./include/footer.ftl">
-<script type="text/javascript" src="/static/js/pageShow.js"></script>
+<script type="text/javascript" src="/static/js/detail.js"></script>
 </body>
 </html>

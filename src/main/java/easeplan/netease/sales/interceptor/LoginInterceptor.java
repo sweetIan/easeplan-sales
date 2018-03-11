@@ -1,6 +1,6 @@
 package easeplan.netease.sales.interceptor;
 
-import easeplan.netease.sales.json.JUser;
+import easeplan.netease.sales.json.User;
 import easeplan.netease.sales.service.IAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,9 +32,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         if (modelAndView != null) {
-            Optional<JUser> userOptional = authService.getCookieJUser(request.getCookies());
+            Optional<User> userOptional = authService.getCookieJUser(request.getCookies());
             if (userOptional.isPresent()) {
-                JUser user = userOptional.get();
+                User user = userOptional.get();
                 modelAndView.addObject("user", user);
             }
         }

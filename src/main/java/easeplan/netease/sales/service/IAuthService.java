@@ -1,6 +1,6 @@
 package easeplan.netease.sales.service;
 
-import easeplan.netease.sales.json.JUser;
+import easeplan.netease.sales.json.User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -34,7 +34,7 @@ public interface IAuthService {
      * @param cookies
      * @return
      */
-    Optional<JUser> getCookieJUser(Cookie[] cookies);
+    Optional<User> getCookieJUser(Cookie[] cookies);
 
     /**
      * 注销登录

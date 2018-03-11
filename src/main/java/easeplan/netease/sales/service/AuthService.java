@@ -1,7 +1,7 @@
 package easeplan.netease.sales.service;
 
 import com.google.common.collect.ImmutableMap;
-import easeplan.netease.sales.json.JUser;
+import easeplan.netease.sales.json.User;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 
@@ -23,9 +23,9 @@ public class AuthService implements IAuthService {
             "buyer", DigestUtils.md5DigestAsHex("reyub".getBytes()).toUpperCase(),
             "seller", DigestUtils.md5DigestAsHex("relles".getBytes()).toUpperCase()
     );
-    private static Map<String, JUser> USER_MAP = ImmutableMap.of(
-            "buyer", new JUser("buyer", "有钱的金主", "buyer"),
-            "seller", new JUser("seller", "叮当猫的口袋", "seller")
+    private static Map<String, User> USER_MAP = ImmutableMap.of(
+            "buyer", new User("buyer", "有钱的金主", "buyer"),
+            "seller", new User("seller", "叮当猫的口袋", "seller")
     );
 
     @Override
@@ -43,7 +43,7 @@ public class AuthService implements IAuthService {
     }
 
     @Override
-    public Optional<JUser> getCookieJUser(Cookie[] cookies) {
+    public Optional<User> getCookieJUser(Cookie[] cookies) {
         if (cookies != null) {
             Optional<Cookie> identityCookieOptional = Stream.of(cookies).filter(cookie -> "identity".equals(cookie.getName())).findFirst();
             if (identityCookieOptional.isPresent()) {

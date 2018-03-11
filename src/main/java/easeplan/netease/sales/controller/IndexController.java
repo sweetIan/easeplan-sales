@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @since <pre>2018/3/5</pre>
  */
 @Controller
-public class Index {
+public class IndexController {
     @Autowired
     IAuthService authService;
 

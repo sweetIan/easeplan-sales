@@ -17,7 +17,7 @@ import java.io.IOException;
  * @since <pre>2018/3/8</pre>
  */
 @Controller
-public class Login {
+public class LoginController {
     @Autowired
     IAuthService authService;
 

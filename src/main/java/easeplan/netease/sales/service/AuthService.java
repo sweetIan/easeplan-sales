@@ -17,6 +17,7 @@ import java.util.stream.Stream;
  * @since <pre>2018/3/7</pre>
  */
 @Component
+// todo 改成用JWT
 public class AuthService implements IAuthService {
     private static Map<String, String> PASSWORD_MAP = ImmutableMap.of(
             "buyer", DigestUtils.md5DigestAsHex("reyub".getBytes()).toUpperCase(),

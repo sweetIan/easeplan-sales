@@ -1,37 +1,29 @@
-(function(w,d,u){
-	var showContent = util.get('showContent');
-	if(!showContent){
-		return;
-	}
-	var loading = new Loading();
-	var layer = new Layer();
-	var page = {
-		init:function(){
-			showContent.addEventListener('click',function(e){
-				var ele = e.target;
-				var buy = ele && ele.dataset.buy;
-				if(buy){
-					layer.reset({
-						content:'确认购买本内容吗？',
-						onconfirm:function(){
-							layer.hide();
-							loading.show();
-							ajax({
-								data:{id:buy},
-								url:'/api/buy',
-								success:function(result){
-									loading.result('购买成功',function(){location.href = './account.html';});
-								},
-								error:function(message){
-									loading.result(message||'购买失败');
-								}
-							});
-						}.bind(this)
-					}).show();
-					return;
-				}
-			}.bind(this),false);
-		}
-	};
-	page.init();
-})(window,document);
+(function (window, document) {
+    var doBuy = function(e) {
+        var ele = e.target;
+        var buy = ele && ele.dataset.buy;
+        if (buy) {
+            var r = confirm("确定将物品放入购物车？");
+            if (r == true) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == XMLHttpRequest.DONE) {
+                        if (xhr.status == 200) {
+                            window.alert("已放入购物车！")
+                        }
+                        else {
+                            window.alert(xhr.response.error || "购买失败！");
+                        }
+                    }
+                };
+                xhr.open("POST", "/api/buy", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send("id=" + buy);
+            }
+        }
+    }
+    var buyBtn = document.getElementById("buyBtn");
+    if (buyBtn) {
+        buyBtn.addEventListener("click", doBuy);
+    }
+})(window, document);

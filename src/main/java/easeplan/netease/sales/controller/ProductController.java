@@ -26,7 +26,16 @@ public class ProductController {
             @PathVariable String id
     ) {
         ModelAndView mav = new ModelAndView("edit");
+        mav.addObject("edit", true);
         mav.addObject("product", JProduct.sample());
+        return mav;
+    }
+
+    @RequestMapping(path = "/new", method = RequestMethod.GET)
+    public ModelAndView newPage(
+    ) {
+        ModelAndView mav = new ModelAndView("edit");
+        mav.addObject("edit", false);
         return mav;
     }
 
@@ -35,7 +44,14 @@ public class ProductController {
     public String editApi(
             @PathVariable String id
     ) {
-        return "{\"id\":\"happy\"}";
+        return "{\"id\":\"edit\"}";
+    }
+
+    @RequestMapping(path = "/api/new", method = RequestMethod.POST)
+    @ResponseBody
+    public String newApi(
+    ) {
+        return "{\"id\":\"new\"}";
     }
 }
 

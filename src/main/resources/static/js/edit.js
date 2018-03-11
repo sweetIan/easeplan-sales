@@ -53,9 +53,15 @@
                 }
             }
         };
-        xhr.open("POST", "/api/edit/" + id.value, true);
+        var request = "summary=" + summary.value + "&detail=" + detail.value;
+        if (id) {
+            xhr.open("POST", "/api/edit/" + id.value, true);
+            request = request + "&id=" + id.value;
+        } else {
+            xhr.open("POST", "/api/new/", true);
+        }
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send("summary=" + summary.value + "&detail=" + detail.value);
+        xhr.send(request);
     };
 
     image.addEventListener('input', function (e) {

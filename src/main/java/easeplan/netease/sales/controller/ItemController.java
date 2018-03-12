@@ -1,6 +1,8 @@
 package easeplan.netease.sales.controller;
 
-import easeplan.netease.sales.json.ItemDetail;
+import easeplan.netease.sales.domain.ItemDetail;
+import easeplan.netease.sales.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,22 +14,27 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ItemController {
+    @Autowired
+    ItemService itemService;
+
     @RequestMapping(path = "/detail/{id}", method = RequestMethod.GET)
     public ModelAndView detailPage(
-            @PathVariable String id
+            @PathVariable int id
     ) {
         ModelAndView mav = new ModelAndView("detail");
-        mav.addObject("product", ItemDetail.sample());
+        ItemDetail itemDetail = itemService.getItemDetail(id);
+        mav.addObject("item", itemDetail);
         return mav;
     }
 
     @RequestMapping(path = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editPage(
-            @PathVariable String id
+            @PathVariable int id
     ) {
         ModelAndView mav = new ModelAndView("edit");
         mav.addObject("edit", true);
-        mav.addObject("product", ItemDetail.sample());
+        ItemDetail itemDetail = itemService.getItemDetail(id);
+        mav.addObject("item", itemDetail);
         return mav;
     }
 
@@ -39,19 +46,32 @@ public class ItemController {
         return mav;
     }
 
-    @RequestMapping(path = "/api/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(path = "/api/items", method = RequestMethod.POST)
     @ResponseBody
-    public String editApi(
-            @PathVariable String id
+    public ItemDetail newItemApi(
+            @RequestBody ItemDetail item
     ) {
-        return "{\"id\":\"edit\"}";
+        int id = itemService.newItem(item);
+        item.setId(id);
+        return item;
     }
 
-    @RequestMapping(path = "/api/new", method = RequestMethod.POST)
+    @RequestMapping(path = "/api/items/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public String newApi(
+    public ItemDetail editItemApi(
+            @PathVariable int id,
+            @RequestBody ItemDetail item
     ) {
-        return "{\"id\":\"new\"}";
+        itemService.updateItem(id, item);
+        return item;
+    }
+
+    @RequestMapping(path = "/api/items/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteItemApi(
+            @PathVariable int id
+    ) {
+        itemService.deleteItem(id);
     }
 }
 

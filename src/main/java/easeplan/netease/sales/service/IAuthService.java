@@ -1,6 +1,6 @@
 package easeplan.netease.sales.service;
 
-import easeplan.netease.sales.json.User;
+import easeplan.netease.sales.domain.User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;

@@ -1,4 +1,4 @@
-package easeplan.netease.sales.json;
+package easeplan.netease.sales.domain;
 
 import lombok.Data;
 
@@ -10,11 +10,9 @@ import lombok.Data;
 @Data
 public class ItemAbstract {
     private String id;
-    private String image;
     private String title;
-    private String price;
-
-    private int purchased;
+    private int price;
+    private String image;
     private int sold;
 
     public static ItemAbstract sample() {
@@ -22,8 +20,7 @@ public class ItemAbstract {
         product.setId("ID123");
         product.setImage("https://www.google.co.jp//images/branding/googlelogo/2x/googlelogo_color_120x44dp.png");
         product.setTitle("商品1~");
-        product.setPrice("1.23");
-        product.setPurchased(10);
+        product.setPrice(123);
         product.setSold(10);
         return product;
     }

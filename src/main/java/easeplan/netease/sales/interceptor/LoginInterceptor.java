@@ -1,6 +1,6 @@
 package easeplan.netease.sales.interceptor;
 
-import easeplan.netease.sales.json.User;
+import easeplan.netease.sales.domain.User;
 import easeplan.netease.sales.service.IAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

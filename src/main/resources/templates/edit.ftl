@@ -1,3 +1,4 @@
+<#setting number_format="#">
 <!DOCTYPE html>
 <html>
 <#include "./include/head.ftl">
@@ -7,7 +8,7 @@
     <div class="m-tab m-tab-fw m-tab-simple f-cb">
         <h2>内容<#if edit>编辑<<#else>发布</#if></h2>
     </div>
-    <#if edit && !product??>
+    <#if edit && !item??>
     <div class="n-result">
         <h3>内容不存在！</h3>
     </div>
@@ -18,33 +19,33 @@
                 <label class="fmlab">标题：</label>
                 <div class="fmipt">
                     <#if edit>
-                    <input type="hidden" id="id" value="${product.id}"/>
+                    <input type="hidden" id="id" value="${item.id}"/>
                     </#if>
-                    <input class="u-ipt ipt" id="title" <#if edit>value="${product.title}</#if>" placeholder="2-80字符"/>
+                    <input class="u-ipt ipt" id="title" <#if edit>value="${item.title}</#if>" placeholder="2-80字符"/>
                 </div>
             </div>
             <div class="fmitem">
                 <label class="fmlab">摘要：</label>
                 <div class="fmipt">
-                    <input class="u-ipt ipt" id="summary" <#if edit>value="${product.summary}</#if>" placeholder="2-140字符" ／>
+                    <input class="u-ipt ipt" id="summary" <#if edit>value="${item.summary}</#if>" placeholder="2-140字符" ／>
                 </div>
             </div>
             <div class="fmitem">
                 <label class="fmlab">图片：</label>
                 <div class="fmipt">
-                    <input class="u-ipt ipt" id="image" <#if edit>value="${product.image}</#if>" placeholder="图片地址"/>
+                    <input class="u-ipt ipt" id="image" <#if edit>value="${item.image}</#if>" placeholder="图片地址"/>
                 </div>
             </div>
             <div class="fmitem">
                 <label class="fmlab">正文：</label>
                 <div class="fmipt">
-                    <textarea class="u-ipt" id="detail" rows="10" placeholder="2-1000个字符"><#if edit>${product.detail}</#if></textarea>
+                    <textarea class="u-ipt" id="detail" rows="10" placeholder="2-1000个字符"><#if edit>${item.detail}</#if></textarea>
                 </div>
             </div>
             <div class="fmitem">
                 <label class="fmlab">价格：</label>
                 <div class="fmipt">
-                    <input class="u-ipt price" id="price" value="<#if edit>${product.price}</#if>"/>元
+                    <input class="u-ipt price" id="price" value="<#if edit>${item.price}</#if>"/>元
                 </div>
             </div>
             <div class="fmitem fmitem-nolab fmitem-btn">
@@ -53,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <span class="imgpre"><img src="<#if edit>${product.image}</#if>" alt="" id="imgpre"></span>
+        <span class="imgpre"><img src="<#if edit>${item.image}</#if>" alt="" id="imgpre"></span>
     </div>
     </#if>
 </div>

@@ -1,4 +1,4 @@
-package easeplan.netease.sales.json;
+package easeplan.netease.sales.domain;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package easeplan.netease.sales.controller;
 
-import easeplan.netease.sales.json.CartItem;
+import easeplan.netease.sales.domain.CartItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

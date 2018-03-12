@@ -1,10 +1,10 @@
 (function (w, d, u) {
     var id = document.getElementById("id");
     var title = document.getElementById("title");
-    var summary = document.getElementById("summary");
-    var image = document.getElementById('image');
-    var detail = document.getElementById('detail');
     var price = document.getElementById('price');
+    var image = document.getElementById('image');
+    var summary = document.getElementById("summary");
+    var detail = document.getElementById('detail');
     var submitBtn = document.getElementById('submit');
     var imgpre = document.getElementById('imgpre');
     var isSubmitting = false;
@@ -53,15 +53,19 @@
                 }
             }
         };
-        var request = "summary=" + summary.value + "&detail=" + detail.value;
+        var request = {};
+        request.title = title.value;
+        request.price = price.value;
+        request.image = image.value;
+        request.summary = summary.value;
+        request.detail = detail.value;
         if (id) {
-            xhr.open("POST", "/api/edit/" + id.value, true);
-            request = request + "&id=" + id.value;
+            xhr.open("PUT", "/api/items/" + id.value, true);
         } else {
-            xhr.open("POST", "/api/new/", true);
+            xhr.open("POST", "/api/items/", true);
         }
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send(request);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(JSON.stringify(request));
     };
 
     image.addEventListener('input', function (e) {

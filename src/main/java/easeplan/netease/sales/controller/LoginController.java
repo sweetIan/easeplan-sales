@@ -54,6 +54,4 @@ public class LoginController {
             response.sendError(403);
         }
     }
-
-
 }

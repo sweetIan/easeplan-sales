@@ -1,6 +1,6 @@
 package easeplan.netease.sales.controller;
 
-import easeplan.netease.sales.json.PurchasedItem;
+import easeplan.netease.sales.domain.PurchasedItem;
 import easeplan.netease.sales.util.PriceUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

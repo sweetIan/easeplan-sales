@@ -3,6 +3,8 @@
     var title = document.getElementById("title");
     var price = document.getElementById('price');
     var image = document.getElementById('image');
+    var fileSelect = document.getElementById('fileSelect');
+    var uploadButton = document.getElementById('uploadBtn');
     var summary = document.getElementById("summary");
     var detail = document.getElementById('detail');
     var submitBtn = document.getElementById('submit');
@@ -37,7 +39,7 @@
                 return value.length < 2 || value.length > 140
             }],
             [image, function (value) {
-                return value == ''
+                return value == '' && /\.(jpg|gif|png)$/.test(value)
             }],
             [detail, function (value) {
                 return value.length < 2 || value.length > 1000
@@ -53,6 +55,9 @@
             }
             item[0].value = value;
         });
+        if (image.value == '') {
+            fileSelect.classList.add('z-err');
+        }
         return result;
     };
 
@@ -88,7 +93,7 @@
 
     image.addEventListener('input', function (e) {
         var value = image.value.trim();
-        if (value != '' && /^(http|https):\/\//.test(value) && /\.(jpg|gif|png)$/.test(value)) {
+        if (value != '' && /\.(jpg|gif|png)$/.test(value)) {
             imgpre.src = value;
         }
     });
@@ -105,4 +110,36 @@
             item.classList.remove('z-err');
         })
     });
+    fileSelect.addEventListener("change", function (e) {
+        fileSelect.classList.remove('z-err');
+        image.classList.remove('z-err');
+    });
+
+    uploadButton.onclick = function(event) {
+        uploadButton.innerHTML = 'Uploading...';
+        var file = fileSelect.files[0];
+        var formData = new FormData();
+        if (!file.type.match('image.*')) {
+            window.alert("絵");
+            return;
+        }
+        formData.append('file', file, file.name);
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                if (xhr.status == 200) {
+                    var url=xhr.responseText
+                    image.value=url;
+                    imgpre.src=url;
+                    window.alert("上传成功！");
+                }
+                else {
+                    window.alert("上传失败！");
+                }
+            }
+        };
+        xhr.open("POST", "/pics", true);
+        xhr.send(formData);
+    };
 })(window, document);

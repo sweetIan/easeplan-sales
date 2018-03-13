@@ -15,16 +15,16 @@
     <table class="m-table m-table-row n-table g-b3">
         <colgroup><col class="img"/><col/><col/><col class="time"/><col/><col class="price"/></colgroup>
         <thead>
-            <tr><th>内容图片</th><th>内容名称</th><th>购买时间</th><th>购买数量</th><th>购买价格</th></tr>
+            <tr><th>内容图片</th><th>内容标题</th><th>购买时间</th><th>购买数量</th><th>购买价格</th></tr>
         </thead>
         <tbody>
             <#list purchasedItems as x>
             <tr>
                 <td><a href="/detail/${x.id}"><img src="${x.image}" alt=""></a></td>
                 <td><h4><a href="/detail/${x.id}">${x.title}</a></h4></td>
-                <td><span class="v-time">${x.getPurchaseDate?number_to_date?string('yyyy.MM.dd HH:mm:ss')}</span></td>
-                <td><span class="value">${x.getPurchaseAmount}</span></td>
-                <td><span class="v-unit">¥</span><span class="value">${x.getPurchasePrice}</span></td>
+                <td><span class="v-time">${x.purchaseDate?number_to_date?string('yyyy.MM.dd HH:mm:ss')}</span></td>
+                <td><span class="value">${x.purchaseAmount}</span></td>
+                <td><span class="v-unit">¥</span><span class="value">${x.purchasePrice}</span></td>
             </tr>
             </#list>
         </tbody>

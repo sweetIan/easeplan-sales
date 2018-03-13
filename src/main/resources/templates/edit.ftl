@@ -70,6 +70,5 @@
 </div>
 <#include "./include/footer.ftl">
 <script type="text/javascript" src="/static/js/edit.js"></script>
-<script type="text/javascript" src="/static/js/upload.js"></script>
 </body>
 </html>

@@ -97,6 +97,12 @@ public class AuthService implements IAuthService {
         return userOptional.isPresent() && userOptional.get().getRole().equals("seller");
     }
 
+    /**
+     * 尝试根据JWT凭据获取用户
+     *
+     * @param jwtString
+     * @return
+     */
     private Optional<User> getUser(String jwtString) {
         if (StringUtils.isEmpty(jwtString)) {
             return Optional.empty();

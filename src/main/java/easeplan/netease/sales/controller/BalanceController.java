@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * 财务
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/11</pre>
@@ -27,6 +29,14 @@ public class BalanceController {
     @Autowired
     IBalanceService balanceService;
 
+    /**
+     * 财务页
+     *
+     * @param identity
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/balance", method = RequestMethod.GET)
     public ModelAndView balancePage(
             @CookieValue(value = "identity", required = false) String identity,
@@ -36,7 +46,7 @@ public class BalanceController {
             ModelAndView mav = new ModelAndView("balance");
             List<PurchasedItem> purchasedItems = balanceService.getPurchasedItemList();
             mav.addObject("purchasedItems", purchasedItems);
-            int total = purchasedItems.stream().mapToInt(item -> item.getPurchaseAmount() * item.getPurchasePrice()).sum();
+            long total = purchasedItems.stream().mapToLong(item -> item.getPurchaseAmount() * item.getPurchasePrice()).sum();
             mav.addObject("total", total);
             return mav;
         } else {
@@ -45,6 +55,13 @@ public class BalanceController {
         }
     }
 
+    /**
+     * 结算购物车接口
+     *
+     * @param identity
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(value = "/api/purchase", method = RequestMethod.POST)
     @ResponseBody
     public void purchaseApi(

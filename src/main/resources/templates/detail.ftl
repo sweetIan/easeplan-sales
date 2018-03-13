@@ -15,7 +15,7 @@
             <h2>${item.title}</h2>
             <p class="summary">${item.summary}</p>
             <div class="price">
-                <span class="v-unit">¥</span><span class="v-value">${item.price}</span>
+                <span class="v-unit">¥</span><span class="v-value">${(item.price/100.0)?string(',###.##')}</span>
             </div>
             <div class="oprt f-cb">
                 <#if user?? && user.role=="buyer">
@@ -55,7 +55,8 @@
         <tr>
             <td><span class="v-time">${x.purchaseDate?number_to_date?string('yyyy.MM.dd HH:mm:ss')}</span></td>
             <td><span class="value">${x.purchaseAmount}</span></td>
-            <td><span class="v-unit">¥</span><span class="value">${x.purchasePrice}</span></td>
+            <td><span class="v-unit">¥</span><span class="value">${(x.purchasePrice/100.0)?string(',###.##')}</span>
+            </td>
         </tr>
         </#list>
             </tbody>

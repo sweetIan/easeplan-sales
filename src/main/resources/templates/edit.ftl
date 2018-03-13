@@ -58,12 +58,12 @@
             <div class="fmitem">
                 <label class="fmlab">价格：</label>
                 <div class="fmipt">
-                    <input class="u-ipt price" id="price" value="<#if edit>${item.price}</#if>"/>元
+                    <input class="u-ipt price" id="price" value="<#if edit>${item.price}</#if>"/>（单位为分，请填写整数）
                 </div>
             </div>
             <div class="fmitem fmitem-nolab fmitem-btn">
                 <div class="fmipt">
-                    <button id="submit" class="u-btn u-btn-primary u-btn-lg">保 存</button>
+                    <button id="submit" class="u-btn u-btn-primary u-btn-lg">保存</button>
                 </div>
             </div>
         </div>

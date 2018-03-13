@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 /**
+ * 身份拦截器
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/9</pre>
  */
 @Component
-public class LoginInterceptor extends HandlerInterceptorAdapter {
+public class IdentityInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     IAuthService authService;
 

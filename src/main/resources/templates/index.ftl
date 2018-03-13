@@ -31,7 +31,7 @@
                         <h3>${x.title}</h3>
                         <div class="price">
                             <span class="v-unit">¥</span>
-                            <span class="v-value">${x.price}</span>
+                            <span class="v-value">${(x.price/100.0)?string(',###.##')}</span>
                         <#if user?? && (x.sold > 0)>
                         <span class="v-unit">已<#if user.role == 'seller'>售出<#else>购买</#if>${x.sold}件</span>
                         </#if>

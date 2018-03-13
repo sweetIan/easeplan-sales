@@ -71,6 +71,7 @@ public class StorageService implements IStorageService {
         }
     }
 
+    @Override
     public void init() {
         try {
             Files.createDirectories(rootLocation);

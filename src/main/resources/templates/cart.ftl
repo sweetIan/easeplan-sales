@@ -25,7 +25,7 @@
         <#list cartItems as x>
         <tr>
             <td>${x.title}</td>
-            <td>¥${x.price}</td>
+            <td>¥${(x.price/100.0)?string(',###.##')}</td>
             <td>
                 <input type="hidden" value="${x.id}"/>
                 <span class="totalNum">${x.amount}</span>

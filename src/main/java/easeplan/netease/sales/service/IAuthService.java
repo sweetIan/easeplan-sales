@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 /**
+ * 认证服务
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/7</pre>
@@ -46,9 +48,27 @@ public interface IAuthService {
      */
     void removeLogin(HttpServletResponse response);
 
+    /**
+     * 凭据是否为已登录用户
+     *
+     * @param jwtString
+     * @return
+     */
     boolean isLogin(String jwtString);
 
+    /**
+     * 凭据是否为买家用户
+     *
+     * @param jwtString
+     * @return
+     */
     boolean isBuyer(String jwtString);
 
+    /**
+     * 凭据是否为卖家用户
+     *
+     * @param jwtString
+     * @return
+     */
     boolean isSeller(String jwtString);
 }

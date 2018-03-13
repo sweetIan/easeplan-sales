@@ -62,13 +62,13 @@ public class ItemService implements IItemService {
     private void verify(ItemDetail itemDetail) {
         String title = itemDetail.getTitle();
         String image = itemDetail.getImage();
-        int price = itemDetail.getPrice();
+        long price = itemDetail.getPrice();
         String summary = itemDetail.getSummary();
         String detail = itemDetail.getDetail();
 
         if (price < 0
                 || title == null || title.length() < 2 || title.length() > 80
-                || image == null || !image.matches("\\.(jpg|gif|png)$")
+                || image == null || !image.matches("(.*)\\.(jpg|gif|png)$")
                 || summary == null || summary.length() < 2 || summary.length() > 140
                 || detail == null || detail.length() < 2 || detail.length() > 1000) {
             throw new BadItemRequestException();

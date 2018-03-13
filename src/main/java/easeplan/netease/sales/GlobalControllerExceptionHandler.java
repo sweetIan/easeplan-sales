@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * 错误拦截
+ */
 @ControllerAdvice
 public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler
@@ -20,5 +23,10 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
     @ExceptionHandler
     protected ResponseEntity<Object> handleBadItemRequestException(BadItemRequestException ex, WebRequest request) {
         return handleExceptionInternal(ex, "请检查内容的各字段是否符合要求！", new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler
+    protected ResponseEntity<Object> handleRuntimeException(RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, "服务器异常！", new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

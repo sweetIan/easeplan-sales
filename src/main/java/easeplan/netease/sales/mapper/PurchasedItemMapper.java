@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 /**
+ * 购买内容记录
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/13</pre>
@@ -15,7 +17,7 @@ import java.util.List;
 public interface PurchasedItemMapper {
     @Update({
             "create table if not exists t_purchased_item",
-            "(id integer, purchase_date bigint, purchase_price integer, purchase_amount integer,",
+            "(id integer, purchase_date bigint, purchase_price bigint, purchase_amount integer,",
             "primary key(id, purchase_date))"
     })
     void schema();

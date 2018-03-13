@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
+ * 存储服务
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/13</pre>

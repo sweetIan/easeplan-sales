@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 /**
+ * 内容
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/12</pre>
@@ -15,7 +17,7 @@ public interface ItemMapper {
     @Update({
             "create table if not exists t_item",
             "(id integer auto_increment primary key,",
-            "title varchar(80) not null, price integer not null, image varchar(200) not null,",
+            "title varchar(80) not null, price bigint not null, image varchar(200) not null,",
             "summary varchar(140), detail varchar(1000))",
             "AUTO_INCREMENT = 1000"
     })

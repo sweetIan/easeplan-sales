@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * 图片上传
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/13</pre>
@@ -25,6 +27,12 @@ public class PictureController {
     @Autowired
     IStorageService storageService;
 
+    /**
+     * 获取图片
+     *
+     * @param fileName
+     * @return
+     */
     @RequestMapping(value = "/pics/{fileName}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String fileName) {
@@ -33,6 +41,15 @@ public class PictureController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
+    /**
+     * 图片上传
+     *
+     * @param file
+     * @param identity
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/api/pics", method = RequestMethod.POST)
     @ResponseBody
     public String handleFileUpload(

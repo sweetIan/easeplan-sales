@@ -15,6 +15,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 /**
+ * 购物车
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/11</pre>
@@ -26,6 +28,15 @@ public class CartController {
     @Autowired
     ICartService cartService;
 
+    /**
+     * 购物车页
+     *
+     * @param referer
+     * @param identity
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(path = "/cart", method = RequestMethod.GET)
     public ModelAndView cartPage(
             @RequestHeader(value = "Referer", required = false, defaultValue = "/") String referer,
@@ -51,6 +62,14 @@ public class CartController {
         }
     }
 
+    /**
+     * 添加指定内容
+     *
+     * @param id
+     * @param identity
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(value = "/api/cart/{id}", method = RequestMethod.POST)
     @ResponseBody
     public void addItem(
@@ -65,6 +84,15 @@ public class CartController {
         }
     }
 
+    /**
+     * 修改购物车内指定内容数量
+     *
+     * @param id
+     * @param num
+     * @param identity
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(value = "/api/cart/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public void updateItemAmount(
@@ -80,6 +108,14 @@ public class CartController {
         }
     }
 
+    /**
+     * 删除指定内容
+     *
+     * @param id
+     * @param identity
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(value = "/api/cart/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteItem(

@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 /**
+ * 购物车记录
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/13</pre>

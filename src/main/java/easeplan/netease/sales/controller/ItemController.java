@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * 内容
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/11</pre>
@@ -28,6 +30,13 @@ public class ItemController {
     @Autowired
     IBalanceService balanceService;
 
+    /**
+     * 内容详情
+     *
+     * @param id
+     * @param identity
+     * @return
+     */
     @RequestMapping(path = "/detail/{id}", method = RequestMethod.GET)
     public ModelAndView detailPage(
             @PathVariable int id,
@@ -36,6 +45,7 @@ public class ItemController {
         ModelAndView mav = new ModelAndView("detail");
         ItemDetail itemDetail = itemService.getItemDetail(id);
         mav.addObject("item", itemDetail);
+        // 仅买家的详情页需要显示内容的详细购买记录
         if (authService.isBuyer(identity)) {
             List<PurchasedItem> purchaseHistory = balanceService.getPurchasedHistoryById(id);
             mav.addObject("purchaseHistory", purchaseHistory);
@@ -43,6 +53,15 @@ public class ItemController {
         return mav;
     }
 
+    /**
+     * 内容编辑页
+     *
+     * @param id
+     * @param identity
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(path = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editPage(
             @PathVariable int id,
@@ -61,6 +80,14 @@ public class ItemController {
         }
     }
 
+    /**
+     * 内容发布页
+     *
+     * @param identity
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(path = "/new", method = RequestMethod.GET)
     public ModelAndView newPage(
             @CookieValue(value = "identity", required = false) String identity,
@@ -76,6 +103,15 @@ public class ItemController {
         }
     }
 
+    /**
+     * 发布内容接口
+     *
+     * @param item
+     * @param identity
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(path = "/api/items", method = RequestMethod.POST)
     @ResponseBody
     public ItemDetail newItemApi(
@@ -93,6 +129,16 @@ public class ItemController {
         }
     }
 
+    /**
+     * 编辑内容接口
+     *
+     * @param id
+     * @param item
+     * @param identity
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(path = "/api/items/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public ItemDetail editItemApi(
@@ -110,6 +156,14 @@ public class ItemController {
         }
     }
 
+    /**
+     * 删除内容接口
+     *
+     * @param id
+     * @param identity
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(path = "/api/items/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteItemApi(

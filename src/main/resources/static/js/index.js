@@ -29,5 +29,8 @@
         return false;
     };
 
-    document.getElementById("plist").addEventListener("click", handleClick);
+    var plist = document.getElementById("plist");
+    if (plist) {
+        plist.addEventListener("click", handleClick);
+    }
 })(window, document);

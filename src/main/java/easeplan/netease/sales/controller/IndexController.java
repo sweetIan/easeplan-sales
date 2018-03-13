@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 /**
+ * 首页
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/5</pre>
@@ -25,6 +27,13 @@ public class IndexController {
     @Autowired
     IItemService itemService;
 
+    /**
+     * 首页
+     *
+     * @param filter
+     * @param identity
+     * @return
+     */
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView index(
             @RequestParam(required = false, defaultValue = "false") boolean filter,

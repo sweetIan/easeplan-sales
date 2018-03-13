@@ -1,6 +1,6 @@
 package easeplan.netease.sales.config;
 
-import easeplan.netease.sales.interceptor.LoginInterceptor;
+import easeplan.netease.sales.interceptor.IdentityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -14,10 +14,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
     @Autowired
-    LoginInterceptor loginInterceptor;
+    IdentityInterceptor identityInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor);
+        registry.addInterceptor(identityInterceptor);
     }
 }

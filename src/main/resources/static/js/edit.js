@@ -45,7 +45,7 @@
                 return value.length < 2 || value.length > 1000
             }],
             [price, function (value) {
-                return value == '' || !Number(value)
+                return value == '' || !Number(value) || !Number.isInteger(Number(value))
             }]
         ].forEach(function (item) {
             var value = item[0].value.trim();
@@ -67,18 +67,18 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 isSubmitting = false;
-                var response = JSON.parse(xhr.response);
                 if (xhr.status == 200) {
+                    var response = JSON.parse(xhr.response);
                     window.location = "/detail/" + response.id;
                 }
                 else {
-                    window.alert(response.error || "提交失败！");
+                    window.alert("提交失败！");
                 }
             }
         };
         var request = {};
         request.title = title.value;
-        request.price = price.value;
+        request.price = Number(price.value);
         request.image = image.value;
         request.summary = summary.value;
         request.detail = detail.value;

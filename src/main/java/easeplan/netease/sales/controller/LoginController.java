@@ -12,6 +12,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
+ * 登录登出
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/8</pre>
@@ -21,6 +23,15 @@ public class LoginController {
     @Autowired
     IAuthService authService;
 
+    /**
+     * 登录页
+     *
+     * @param referer
+     * @param identity
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(
             @RequestHeader(name = "Referer", required = false, defaultValue = "/") String referer,
@@ -42,12 +53,26 @@ public class LoginController {
         }
     }
 
+    /**
+     * 登出接口
+     *
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(path = "/logout", method = RequestMethod.GET)
     public void logout(HttpServletResponse response) throws IOException {
         authService.removeLogin(response);
         response.sendRedirect("/");
     }
 
+    /**
+     * 登录接口
+     *
+     * @param username
+     * @param password
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(path = "/api/login", method = RequestMethod.POST)
     @ResponseBody
     public void login(

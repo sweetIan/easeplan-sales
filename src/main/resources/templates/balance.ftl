@@ -37,7 +37,8 @@
                 <td><h4><a href="/detail/${x.id}">${x.title}</a></h4></td>
                 <td><span class="v-time">${x.purchaseDate?number_to_date?string('yyyy.MM.dd HH:mm:ss')}</span></td>
                 <td><span class="value">${x.purchaseAmount}</span></td>
-                <td><span class="v-unit">¥</span><span class="value">${x.purchasePrice}</span></td>
+                <td><span class="v-unit">¥</span><span class="value">${(x.purchasePrice/100.0)?string(',###.##')}</span>
+                </td>
             </tr>
             </#list>
         </tbody>
@@ -46,7 +47,7 @@
             <td colspan="4">
                 <div class="total">总计：</div>
             </td>
-            <td><span class="v-unit">¥</span><span class="value">${total}</span></td>
+            <td><span class="v-unit">¥</span><span class="value">${(total/100.0)?string(',###.##')}</span></td>
         </tr>
         </tfoot>
     </table>

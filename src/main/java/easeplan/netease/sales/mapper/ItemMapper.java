@@ -22,10 +22,10 @@ public interface ItemMapper {
     void schema();
 
 
-    @Select("select a.id as id, title, price, image, coalesce(sum(b.bought_amount), 0) as sold from t_item as a left outer join t_purchased_item as b on a.id = b.id group by a.id")
+    @Select("select a.id as id, title, price, image, coalesce(sum(b.purchase_amount), 0) as sold from t_item as a left outer join t_purchased_item as b on a.id = b.id group by a.id")
     List<ItemAbstract> getAbstractListAll();
 
-    @Select("select a.id as id, title, price, image, coalesce(sum(b.bought_amount), 0) as sold from t_item as a left outer join t_purchased_item as b on a.id = b.id group by a.id having sold = 0")
+    @Select("select a.id as id, title, price, image, coalesce(sum(b.purchase_amount), 0) as sold from t_item as a left outer join t_purchased_item as b on a.id = b.id group by a.id having sold = 0")
     List<ItemAbstract> getAbstractListUnsold();
 
     @Select("select * from t_item where id = #{param1}")

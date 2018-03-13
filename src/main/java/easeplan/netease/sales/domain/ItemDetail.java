@@ -17,5 +17,4 @@ public class ItemDetail {
     private String image;
     private String summary;
     private String detail;
-    private int sold;
 }

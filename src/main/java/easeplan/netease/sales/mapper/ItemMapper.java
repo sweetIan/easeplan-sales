@@ -53,4 +53,7 @@ public interface ItemMapper {
 
     @Delete({"delete from t_item where id = #{param1}"})
     void delete(int id);
+
+    @Select("select count(*) from t_item")
+    int count();
 }

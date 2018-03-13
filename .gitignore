@@ -24,4 +24,7 @@ nbdist/
 .nb-gradle/
 
 *.pdf
-pics/
+
+pics/*
+!pics/apple.jpg
+

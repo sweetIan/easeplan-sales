@@ -1,4 +1,3 @@
-<#setting number_format="#">
 <!DOCTYPE html>
 <html>
 <#include "./include/head.ftl">

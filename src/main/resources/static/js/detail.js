@@ -9,7 +9,7 @@
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE) {
                         if (xhr.status == 200) {
-                            window.alert("已放入购物车！")
+                            window.alert("已加入购物车！您可在购物车调整购买数量！")
                         }
                         else {
                             window.alert(xhr.response.error || "购买失败！");

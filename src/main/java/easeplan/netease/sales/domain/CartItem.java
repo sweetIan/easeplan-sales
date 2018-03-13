@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 public class CartItem {
-    private String id;
+    private int id;
     private String title;
     private String price;
     private int amount;
@@ -17,7 +17,7 @@ public class CartItem {
     public static CartItem sample() {
         CartItem cartItem = new CartItem();
         cartItem.setAmount(10);
-        cartItem.setId("123");
+        cartItem.setId(123);
         cartItem.setPrice("1.23");
         cartItem.setTitle("纷纷");
         return cartItem;

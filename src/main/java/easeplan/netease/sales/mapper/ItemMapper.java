@@ -50,5 +50,5 @@ public interface ItemMapper {
     int update(ItemDetail itemDetail);
 
     @Delete({"delete from t_item where id = #{param1}"})
-    int delete(int id);
+    void delete(int id);
 }

@@ -1,6 +1,7 @@
 package easeplan.netease.sales;
 
-import easeplan.netease.sales.service.implementation.StorageException;
+import easeplan.netease.sales.exception.BadItemRequestException;
+import easeplan.netease.sales.exception.StorageException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,5 +15,10 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
     @ExceptionHandler
     protected ResponseEntity<Object> handleStorageException(StorageException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler
+    protected ResponseEntity<Object> handleBadItemRequestException(BadItemRequestException ex, WebRequest request) {
+        return handleExceptionInternal(ex, "请检查内容的各字段是否符合要求！", new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

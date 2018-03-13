@@ -1,5 +1,6 @@
 package easeplan.netease.sales.service.implementation;
 
+import easeplan.netease.sales.exception.StorageException;
 import easeplan.netease.sales.service.IStorageService;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

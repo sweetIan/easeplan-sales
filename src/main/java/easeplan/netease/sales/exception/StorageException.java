@@ -1,4 +1,4 @@
-package easeplan.netease.sales.service.implementation;
+package easeplan.netease.sales.exception;
 
 /**
  * @author huangzw

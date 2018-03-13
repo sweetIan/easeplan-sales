@@ -2,6 +2,7 @@ package easeplan.netease.sales.service.implementation;
 
 import easeplan.netease.sales.domain.ItemAbstract;
 import easeplan.netease.sales.domain.ItemDetail;
+import easeplan.netease.sales.exception.BadItemRequestException;
 import easeplan.netease.sales.mapper.ItemMapper;
 import easeplan.netease.sales.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,10 +51,7 @@ public class ItemService implements IItemService {
 
     @Override
     public void deleteItem(int id) {
-        if (itemMapper.delete(id) == 0) {
-            //todo
-            throw new RuntimeException();
-        }
+        itemMapper.delete(id);
     }
 
     /**
@@ -62,6 +60,18 @@ public class ItemService implements IItemService {
      * @param itemDetail
      */
     private void verify(ItemDetail itemDetail) {
-        //todo
+        String title = itemDetail.getTitle();
+        String image = itemDetail.getImage();
+        int price = itemDetail.getPrice();
+        String summary = itemDetail.getSummary();
+        String detail = itemDetail.getDetail();
+
+        if (price < 0
+                || title == null || title.length() < 2 || title.length() > 80
+                || image == null || !image.matches("\\.(jpg|gif|png)$")
+                || summary == null || summary.length() < 2 || summary.length() > 140
+                || detail == null || detail.length() < 2 || detail.length() > 1000) {
+            throw new BadItemRequestException();
+        }
     }
 }

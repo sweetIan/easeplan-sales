@@ -39,7 +39,7 @@
                 return value.length < 2 || value.length > 140
             }],
             [image, function (value) {
-                return value == '' && /\.(jpg|gif|png)$/.test(value)
+                return value == '' || !/\.(jpg|gif|png)$/.test(value)
             }],
             [detail, function (value) {
                 return value.length < 2 || value.length > 1000

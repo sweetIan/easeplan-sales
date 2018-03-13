@@ -1,8 +1,9 @@
-package easeplan.netease.sales.service;
+package easeplan.netease.sales.service.implementation;
 
 import easeplan.netease.sales.domain.ItemAbstract;
 import easeplan.netease.sales.domain.ItemDetail;
 import easeplan.netease.sales.mapper.ItemMapper;
+import easeplan.netease.sales.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

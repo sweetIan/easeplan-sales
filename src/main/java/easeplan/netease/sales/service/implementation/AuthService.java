@@ -1,7 +1,8 @@
-package easeplan.netease.sales.service;
+package easeplan.netease.sales.service.implementation;
 
 import com.google.common.collect.ImmutableMap;
 import easeplan.netease.sales.domain.User;
+import easeplan.netease.sales.service.IAuthService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 

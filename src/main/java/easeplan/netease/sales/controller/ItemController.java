@@ -1,7 +1,7 @@
 package easeplan.netease.sales.controller;
 
 import easeplan.netease.sales.domain.ItemDetail;
-import easeplan.netease.sales.service.ItemService;
+import easeplan.netease.sales.service.implementation.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

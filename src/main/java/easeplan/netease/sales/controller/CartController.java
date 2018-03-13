@@ -28,6 +28,9 @@ public class CartController {
         ModelAndView mav = new ModelAndView("cart");
         List<CartItem> cartItems = cartService.getCartItemList();
         mav.addObject("cartItems", cartItems);
+        int deletedItemCount = cartService.getDeletedItemCount();
+        mav.addObject("deletedItemCount", deletedItemCount);
+
         try {
             if (!new URI(referer).getPath().startsWith("/cart")) {
                 mav.addObject("referer", referer);

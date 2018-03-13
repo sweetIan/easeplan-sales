@@ -36,4 +36,10 @@ public interface ICartService {
      * @param id
      */
     void deleteItem(int id);
+
+    /**
+     * 购物车中已经失效的内容条数
+     * @return
+     */
+    int getDeletedItemCount();
 }

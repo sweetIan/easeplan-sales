@@ -61,6 +61,18 @@
         window.location = url;
     });
     document.getElementById("purchase").addEventListener("click", function (ev) {
-
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                if (xhr.status == 200) {
+                    window.alert("购买成功！");
+                }
+                else {
+                    window.alert("购买失败！");
+                }
+            }
+        };
+        xhr.open("POST", "/api/purchase", true);
+        xhr.send();
     });
 })(window, document);

@@ -1,7 +1,8 @@
-package easeplan.netease.sales.service;
+package easeplan.netease.sales.service.implementation;
 
 import easeplan.netease.sales.domain.CartItem;
 import easeplan.netease.sales.mapper.CartItemMapper;
+import easeplan.netease.sales.service.ICartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,5 +43,10 @@ public class CartService implements ICartService {
     @Override
     public void deleteItem(int id) {
         cartItemMapper.deleteItem(id);
+    }
+
+    @Override
+    public int getDeletedItemCount() {
+        return cartItemMapper.getDeletedItemCount();
     }
 }

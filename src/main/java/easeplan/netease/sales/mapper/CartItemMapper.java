@@ -32,11 +32,13 @@ public interface CartItemMapper {
 
     @Insert("insert into t_cart_item (id, amount) values (#{param1}, 1)")
     int insertItem(int id);
-    
+
     @Update("update t_cart_item set amount = #{param2} where id = #{param1}")
     int updateItemAmount(int id, int amount);
 
     @Delete("delete from t_cart_item where id = #{param1}")
     int deleteItem(int id);
 
+    @Select("select count(*) from t_cart_item as a left outer join t_item as b on a.id = b.id where b.id is null")
+    int getDeletedItemCount();
 }

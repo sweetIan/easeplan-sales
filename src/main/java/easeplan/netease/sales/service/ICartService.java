@@ -39,7 +39,7 @@ public interface ICartService {
 
     /**
      * 购物车中已经失效的内容条数
-     * @return
+     * @return 删除的内容条数
      */
-    int getDeletedItemCount();
+    int deleteDeletedItems();
 }

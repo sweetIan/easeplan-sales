@@ -2,7 +2,6 @@ package easeplan.netease.sales.controller;
 
 import easeplan.netease.sales.domain.PurchasedItem;
 import easeplan.netease.sales.service.IBalanceService;
-import easeplan.netease.sales.util.PriceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +26,8 @@ public class BalanceController {
         ModelAndView mav = new ModelAndView("balance");
         List<PurchasedItem> purchasedItems = balanceService.getPurchasedItemList();
         mav.addObject("purchasedItems", purchasedItems);
-        int total = purchasedItems.stream().mapToInt(item -> item.getBoughtAmount() * Integer.valueOf(item.getBoughtPrice().replace(".", ""))).sum();
-        mav.addObject("total", PriceUtil.formatPrice(total));
+        int total = purchasedItems.stream().mapToInt(item -> item.getPurchaseAmount() * item.getPurchasePrice()).sum();
+        mav.addObject("total", total);
         return mav;
     }
 

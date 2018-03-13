@@ -5,6 +5,7 @@ import easeplan.netease.sales.mapper.CartItemMapper;
 import easeplan.netease.sales.service.ICartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -46,7 +47,10 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public int getDeletedItemCount() {
-        return cartItemMapper.getDeletedItemCount();
+    @Transactional
+    public int deleteDeletedItems() {
+        int deletedCount = cartItemMapper.getDeletedItemCount();
+        cartItemMapper.deleteDeletedItems();
+        return deletedCount;
     }
 }

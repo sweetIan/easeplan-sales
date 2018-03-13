@@ -2,6 +2,7 @@ package easeplan.netease.sales;
 
 import easeplan.netease.sales.mapper.CartItemMapper;
 import easeplan.netease.sales.mapper.ItemMapper;
+import easeplan.netease.sales.mapper.PurchasedItemMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class DbInitRunner implements CommandLineRunner {
     ItemMapper itemMapper;
     @Autowired
     CartItemMapper cartItemMapper;
+    @Autowired
+    PurchasedItemMapper purchasedItemMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(DbInitRunner.class);
     @Override
@@ -26,5 +29,6 @@ public class DbInitRunner implements CommandLineRunner {
         logger.info("Initializing DB tables...");
         itemMapper.schema();
         cartItemMapper.schema();
+        purchasedItemMapper.schema();
     }
 }

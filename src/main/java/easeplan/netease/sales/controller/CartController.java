@@ -28,7 +28,7 @@ public class CartController {
         ModelAndView mav = new ModelAndView("cart");
         List<CartItem> cartItems = cartService.getCartItemList();
         mav.addObject("cartItems", cartItems);
-        int deletedItemCount = cartService.getDeletedItemCount();
+        int deletedItemCount = cartService.deleteDeletedItems();
         mav.addObject("deletedItemCount", deletedItemCount);
 
         try {

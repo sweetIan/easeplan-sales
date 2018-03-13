@@ -1,11 +1,15 @@
 package easeplan.netease.sales.controller;
 
 import easeplan.netease.sales.domain.ItemDetail;
+import easeplan.netease.sales.domain.PurchasedItem;
+import easeplan.netease.sales.service.implementation.BalanceService;
 import easeplan.netease.sales.service.implementation.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * @author huangzw
@@ -16,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class ItemController {
     @Autowired
     ItemService itemService;
+    @Autowired
+    BalanceService balanceService;
 
     @RequestMapping(path = "/detail/{id}", method = RequestMethod.GET)
     public ModelAndView detailPage(
@@ -24,6 +30,8 @@ public class ItemController {
         ModelAndView mav = new ModelAndView("detail");
         ItemDetail itemDetail = itemService.getItemDetail(id);
         mav.addObject("item", itemDetail);
+        List<PurchasedItem> purchaseHistory = balanceService.getPurchasedHistoryById(id);
+        mav.addObject("purchaseHistory", purchaseHistory);
         return mav;
     }
 

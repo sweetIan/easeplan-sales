@@ -39,6 +39,12 @@ public interface CartItemMapper {
     @Delete("delete from t_cart_item where id = #{param1}")
     int deleteItem(int id);
 
-    @Select("select count(*) from t_cart_item as a left outer join t_item as b on a.id = b.id where b.id is null")
+    @Select("select count(*) from t_cart_item where not exists (select * from t_item where t_cart_item.id = t_item.id)")
     int getDeletedItemCount();
+
+    @Delete("delete from t_cart_item where not exists (select * from t_item where t_cart_item.id = t_item.id)")
+    void deleteDeletedItems();
+
+    @Delete("delete from t_cart_item")
+    void clear();
 }

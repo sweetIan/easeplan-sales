@@ -1,5 +1,6 @@
 package easeplan.netease.sales.service.implementation;
 
+import easeplan.netease.sales.domain.CartItem;
 import easeplan.netease.sales.domain.PurchasedItem;
 import easeplan.netease.sales.mapper.CartItemMapper;
 import easeplan.netease.sales.mapper.PurchasedItemMapper;
@@ -8,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author huangzw
@@ -26,11 +27,26 @@ public class BalanceService implements IBalanceService {
     @Override
     @Transactional
     public void purchase() {
-
+        List<CartItem> cartItems = cartItemMapper.getCartItemList();
+        List<PurchasedItem> purchasedItems = cartItems.stream().map(cartItem -> {
+            PurchasedItem purchasedItem = new PurchasedItem();
+            purchasedItem.setId(cartItem.getId());
+            purchasedItem.setPurchaseDate(System.currentTimeMillis());
+            purchasedItem.setPurchasePrice(cartItem.getPrice());
+            purchasedItem.setPurchaseAmount(cartItem.getAmount());
+            return purchasedItem;
+        }).collect(Collectors.toList());
+        purchasedItemMapper.batchInsert(purchasedItems);
+        cartItemMapper.clear();
     }
 
     @Override
     public List<PurchasedItem> getPurchasedItemList() {
-        return Arrays.asList(PurchasedItem.sample(), PurchasedItem.sample());
+        return purchasedItemMapper.getPurchasedItemList();
+    }
+
+    @Override
+    public List<PurchasedItem> getPurchasedHistoryById(int id) {
+        return purchasedItemMapper.getPurchasedHistoryById(id);
     }
 }

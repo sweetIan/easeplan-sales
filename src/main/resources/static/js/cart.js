@@ -44,6 +44,7 @@
         }else if(target.nodeName == "BUTTON" && target.classList.contains("submitBtn")){
             var id = target.parentElement.parentElement.firstElementChild.value;
             var num = target.previousElementSibling.value;
+            target.previousElementSibling.value = "";
             changeItemAmount(id, num, target);
         }else if(target.nodeName == "BUTTON" && target.classList.contains("cancelBtn")){
             target.parentElement.style.display = "none";
@@ -65,7 +66,10 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 if (xhr.status == 200) {
-                    window.alert("购买成功！");
+                    var r = confirm("购买成功！");
+                    if (r == true) {
+                        window.location = "/balance";
+                    }
                 }
                 else {
                     window.alert("购买失败！");

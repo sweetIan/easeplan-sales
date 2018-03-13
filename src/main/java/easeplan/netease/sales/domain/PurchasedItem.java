@@ -2,8 +2,6 @@ package easeplan.netease.sales.domain;
 
 import lombok.Data;
 
-import java.util.Date;
-
 /**
  * @author huangzw
  * @version 1.0
@@ -11,21 +9,10 @@ import java.util.Date;
  */
 @Data
 public class PurchasedItem {
-    private String id;
+    private int id;
     private String image;
     private String title;
-    private Date boughtDate;
-    private String boughtPrice;
-    private int boughtAmount;
-
-    public static PurchasedItem sample() {
-        PurchasedItem product = new PurchasedItem();
-        product.setId("ID123");
-        product.setImage("https://www.google.co.jp//images/branding/googlelogo/2x/googlelogo_color_120x44dp.png");
-        product.setTitle("商品1~");
-        product.setBoughtDate(new Date());
-        product.setBoughtPrice("18.50");
-        product.setBoughtAmount(18);
-        return product;
-    }
+    private long purchaseDate;
+    private int purchasePrice;
+    private int purchaseAmount;
 }

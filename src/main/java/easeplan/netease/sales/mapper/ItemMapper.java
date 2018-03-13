@@ -16,16 +16,16 @@ public interface ItemMapper {
             "create table if not exists t_item",
             "(id integer auto_increment primary key,",
             "title varchar(80) not null, price integer not null, image varchar(200) not null,",
-            "summary varchar(140), detail varchar(1000), sold integer not null default 0)",
+            "summary varchar(140), detail varchar(1000))",
             "AUTO_INCREMENT = 1000"
     })
     void schema();
 
 
-    @Select("select id, title, price, image, sold from t_item")
+    @Select("select a.id as id, title, price, image, coalesce(sum(b.bought_amount), 0) as sold from t_item as a left outer join t_purchased_item as b on a.id = b.id group by a.id")
     List<ItemAbstract> getAbstractListAll();
 
-    @Select("select id, title, price, image, sold from t_item where sold = 0")
+    @Select("select a.id as id, title, price, image, coalesce(sum(b.bought_amount), 0) as sold from t_item as a left outer join t_purchased_item as b on a.id = b.id group by a.id having sold = 0")
     List<ItemAbstract> getAbstractListUnsold();
 
     @Select("select * from t_item where id = #{param1}")

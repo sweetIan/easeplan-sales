@@ -14,14 +14,4 @@ public class ItemAbstract {
     private int price;
     private String image;
     private int sold;
-
-    public static ItemAbstract sample() {
-        ItemAbstract product = new ItemAbstract();
-        product.setId("ID123");
-        product.setImage("https://www.google.co.jp//images/branding/googlelogo/2x/googlelogo_color_120x44dp.png");
-        product.setTitle("商品1~");
-        product.setPrice(123);
-        product.setSold(10);
-        return product;
-    }
 }

@@ -23,4 +23,11 @@ public interface IBalanceService {
      * @return
      */
     List<PurchasedItem> getPurchasedItemList();
+
+    /**
+     * 获取特定内容的购买记录
+     * @param id
+     * @return
+     */
+    List<PurchasedItem> getPurchasedHistoryById(int id);
 }

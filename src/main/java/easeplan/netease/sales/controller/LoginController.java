@@ -23,16 +23,23 @@ public class LoginController {
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(
-            @RequestHeader(name = "Referer", required = false, defaultValue = "/") String referer
-    ) {
-        ModelAndView mav = new ModelAndView("login");
-        try {
-            if (!new URI(referer).getPath().startsWith("/login")) {
-                mav.addObject("referer", referer);
+            @RequestHeader(name = "Referer", required = false, defaultValue = "/") String referer,
+            @CookieValue(value = "identity", required = false) String identity,
+            HttpServletResponse response
+    ) throws IOException {
+        if (authService.isLogin(identity)) {
+            response.sendRedirect("/");
+            return null;
+        } else {
+            ModelAndView mav = new ModelAndView("login");
+            try {
+                if (!new URI(referer).getPath().startsWith("/login")) {
+                    mav.addObject("referer", referer);
+                }
+            } catch (URISyntaxException e) {
             }
-        } catch (URISyntaxException e) {
+            return mav;
         }
-        return mav;
     }
 
     @RequestMapping(path = "/logout", method = RequestMethod.GET)
@@ -49,7 +56,7 @@ public class LoginController {
             HttpServletResponse response
     ) throws IOException {
         if (authService.checkLoginInfo(username, password)) {
-            authService.addJUserCookie(username, response);
+            authService.setIdentityCookie(username, response);
         } else {
             response.sendError(403);
         }

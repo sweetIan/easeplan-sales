@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public interface IStorageService {
     void init();
+
     String store(MultipartFile file);
+
     Resource loadAsResource(String filename);
 }

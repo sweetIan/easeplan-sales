@@ -1,5 +1,6 @@
 package easeplan.netease.sales.controller;
 
+import easeplan.netease.sales.service.IAuthService;
 import easeplan.netease.sales.service.IStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
  * @author huangzw
  * @version 1.0
@@ -16,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Controller
 public class PictureController {
+    @Autowired
+    IAuthService authService;
     @Autowired
     IStorageService storageService;
 
@@ -27,10 +33,19 @@ public class PictureController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @RequestMapping(value = "/pics", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/pics", method = RequestMethod.POST)
     @ResponseBody
-    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-        String filename = storageService.store(file);
-        return "/pics/" + filename;
+    public String handleFileUpload(
+            @RequestParam("file") MultipartFile file,
+            @CookieValue(value = "identity", required = false) String identity,
+            HttpServletResponse response
+    ) throws IOException {
+        if (authService.isSeller(identity)) {
+            String filename = storageService.store(file);
+            return "/pics/" + filename;
+        } else {
+            response.sendError(401);
+            return null;
+        }
     }
 }

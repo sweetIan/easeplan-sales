@@ -16,7 +16,11 @@
             <th></th>
         </tr>
         <#if (deletedItemCount > 0)>
-            <tr><td colspan="4"><div>系统已自动删除${deletedItemCount}条失效内容！</div></td></tr>
+            <tr>
+                <td colspan="4">
+                    <div>系统已自动删除${deletedItemCount}条失效内容！</div>
+                </td>
+            </tr>
         </#if>
         <#list cartItems as x>
         <tr>

@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * 内容服务
+ *
  * @author huangzw
  * @version 1.0
  * @since <pre>2018/3/12</pre>
@@ -16,18 +17,21 @@ import java.util.List;
 public interface IItemService {
     /**
      * 获取所有内容
+     *
      * @return
      */
     List<ItemAbstract> getItemAbstractListAll();
 
     /**
      * 获取所有没有售出/购买过的内容
+     *
      * @return
      */
     List<ItemAbstract> getItemAbstractListUnsold();
 
     /**
      * 获取内容详情
+     *
      * @param id
      * @return
      */
@@ -35,6 +39,7 @@ public interface IItemService {
 
     /**
      * 新建内容
+     *
      * @param itemDetail
      * @return
      */
@@ -42,6 +47,7 @@ public interface IItemService {
 
     /**
      * 修改内容
+     *
      * @param id
      * @param itemDetail
      */
@@ -49,6 +55,7 @@ public interface IItemService {
 
     /**
      * 删除内容
+     *
      * @param id
      * @return 删除的条数
      */

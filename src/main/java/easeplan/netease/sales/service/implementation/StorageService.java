@@ -21,16 +21,16 @@ import java.nio.file.StandardCopyOption;
  */
 @Component
 public class StorageService implements IStorageService {
-    private final Path rootLocation = Paths.get("./pics/");
-
     private static String RANDOM_CANDIDATES = "0123456789QWERTYUIOPASDFGHJKLZXCVBNM";
     private static int RANDOM_SIZE = RANDOM_CANDIDATES.length();
     private static int RANDOM_LENGTH = 8;
+    private final Path rootLocation = Paths.get("./pics/");
+
     private static String RANDOM_FILENAME() {
         StringBuffer tmp = new StringBuffer();
         int i = 0;
-        while (i < RANDOM_LENGTH){
-            tmp.append(RANDOM_CANDIDATES.charAt((int)Math.ceil(Math.random() * 100000000) % RANDOM_SIZE));
+        while (i < RANDOM_LENGTH) {
+            tmp.append(RANDOM_CANDIDATES.charAt((int) Math.ceil(Math.random() * 100000000) % RANDOM_SIZE));
             i++;
         }
         return tmp.toString();

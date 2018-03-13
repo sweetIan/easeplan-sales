@@ -23,6 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * 检查是否有登录后的身份 Cookie，若有则在 ModelAndView 中注入 user
+     *
      * @param request
      * @param response
      * @param handler

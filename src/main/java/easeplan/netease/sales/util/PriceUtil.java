@@ -6,7 +6,9 @@ package easeplan.netease.sales.util;
  * @since <pre>2018/3/11</pre>
  */
 public class PriceUtil {
-    private PriceUtil() {}
+    private PriceUtil() {
+    }
+
     public static String formatPrice(int cent) {
         StringBuilder priceBuilder = new StringBuilder();
         priceBuilder.append(cent / 100).append(".").append(cent % 100);

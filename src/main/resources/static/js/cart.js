@@ -35,21 +35,21 @@
         xhr.send();
     };
 
-    var handleClick = function(e) {
+    var handleClick = function (e) {
         var e = arguments[0] || window.event;
         target = e.srcElement ? e.srcElement : e.target;
-        if(target.nodeName == "BUTTON" && target.classList.contains("changeAmount")){
+        if (target.nodeName == "BUTTON" && target.classList.contains("changeAmount")) {
             target.style.display = "none"
             target.nextElementSibling.style.display = "block";
-        }else if(target.nodeName == "BUTTON" && target.classList.contains("submitBtn")){
+        } else if (target.nodeName == "BUTTON" && target.classList.contains("submitBtn")) {
             var id = target.parentElement.parentElement.firstElementChild.value;
             var num = target.previousElementSibling.value;
             target.previousElementSibling.value = "";
             changeItemAmount(id, num, target);
-        }else if(target.nodeName == "BUTTON" && target.classList.contains("cancelBtn")){
+        } else if (target.nodeName == "BUTTON" && target.classList.contains("cancelBtn")) {
             target.parentElement.style.display = "none";
             target.parentElement.previousElementSibling.style.display = "";
-        }else if(target.nodeName == "BUTTON" && target.classList.contains("removeBtn")){
+        } else if (target.nodeName == "BUTTON" && target.classList.contains("removeBtn")) {
             var id = target.previousElementSibling.value;
             removeItem(id, target);
         }

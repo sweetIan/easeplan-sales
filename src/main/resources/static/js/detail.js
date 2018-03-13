@@ -1,5 +1,5 @@
 (function (window, document) {
-    var doBuy = function(e) {
+    var doBuy = function (e) {
         var ele = e.target;
         var id = ele && ele.dataset.buy;
         if (id) {

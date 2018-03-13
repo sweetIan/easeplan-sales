@@ -13,9 +13,22 @@
     </div>
     <#else>
     <table class="m-table m-table-row n-table g-b3">
-        <colgroup><col class="img"/><col/><col/><col class="time"/><col/><col class="price"/></colgroup>
+        <colgroup>
+            <col class="img"/>
+            <col/>
+            <col/>
+            <col class="time"/>
+            <col/>
+            <col class="price"/>
+        </colgroup>
         <thead>
-            <tr><th>内容图片</th><th>内容标题</th><th>购买时间</th><th>购买数量</th><th>购买价格</th></tr>
+        <tr>
+            <th>内容图片</th>
+            <th>内容标题</th>
+            <th>购买时间</th>
+            <th>购买数量</th>
+            <th>购买价格</th>
+        </tr>
         </thead>
         <tbody>
             <#list purchasedItems as x>
@@ -29,10 +42,12 @@
             </#list>
         </tbody>
         <tfoot>
-            <tr>
-                <td colspan="4"><div class="total">总计：</div></td>
-                <td><span class="v-unit">¥</span><span class="value">${total}</span></td>
-            </tr>
+        <tr>
+            <td colspan="4">
+                <div class="total">总计：</div>
+            </td>
+            <td><span class="v-unit">¥</span><span class="value">${total}</span></td>
+        </tr>
         </tfoot>
     </table>
     </#if>

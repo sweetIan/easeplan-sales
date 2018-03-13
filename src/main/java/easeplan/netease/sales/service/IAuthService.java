@@ -16,6 +16,7 @@ import java.util.Optional;
 public interface IAuthService {
     /**
      * 检查用户名密码是否可以登录
+     *
      * @param username
      * @param password
      * @return
@@ -23,14 +24,16 @@ public interface IAuthService {
     boolean checkLoginInfo(String username, String password);
 
     /**
-     * 添加对应用户的身份凭据Cookie到响应头
+     * 设置用户的身份凭据Cookie
+     *
      * @param username
      * @param response
      */
-    void addJUserCookie(String username, HttpServletResponse response);
+    void setIdentityCookie(String username, HttpServletResponse response);
 
     /**
      * 检查Cookie中的登录信息，获取对应的JUser（若有）
+     *
      * @param cookies
      * @return
      */
@@ -38,7 +41,14 @@ public interface IAuthService {
 
     /**
      * 注销登录
+     *
      * @param response
      */
     void removeLogin(HttpServletResponse response);
+
+    boolean isLogin(String jwtString);
+
+    boolean isBuyer(String jwtString);
+
+    boolean isSeller(String jwtString);
 }

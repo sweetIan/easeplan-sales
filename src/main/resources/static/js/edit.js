@@ -16,8 +16,8 @@
     uploadType.onclick = function (event) {
         event = window.event || event;
         var node = event.srcElement || event.target;
-        if(node.nodeName==="INPUT"){
-            if (node.value==='url') {
+        if (node.nodeName === "INPUT") {
+            if (node.value === 'url') {
                 image.parentElement.style.display = "block";
                 form.style.display = "none";
             } else {
@@ -61,7 +61,7 @@
         return result;
     };
 
-    var doSubmit = function() {
+    var doSubmit = function () {
         isSubmitting = true;
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
@@ -115,7 +115,7 @@
         image.classList.remove('z-err');
     });
 
-    uploadButton.onclick = function(event) {
+    uploadButton.onclick = function (event) {
         uploadButton.innerHTML = 'Uploading...';
         var file = fileSelect.files[0];
         var formData = new FormData();
@@ -129,17 +129,16 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 if (xhr.status == 200) {
-                    var url=xhr.responseText
-                    image.value=url;
-                    imgpre.src=url;
+                    var url = xhr.responseText
+                    image.value = url;
+                    imgpre.src = url;
                     window.alert("上传成功！");
-                }
-                else {
+                } else {
                     window.alert("上传失败！");
                 }
             }
         };
-        xhr.open("POST", "/pics", true);
+        xhr.open("POST", "/api/pics", true);
         xhr.send(formData);
     };
 })(window, document);

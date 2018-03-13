@@ -36,8 +36,10 @@ public class BalanceService implements IBalanceService {
             purchasedItem.setPurchaseAmount(cartItem.getAmount());
             return purchasedItem;
         }).collect(Collectors.toList());
-        purchasedItemMapper.batchInsert(purchasedItems);
-        cartItemMapper.clear();
+        if (purchasedItems.size() > 0) {
+            purchasedItemMapper.batchInsert(purchasedItems);
+            cartItemMapper.clear();
+        }
     }
 
     @Override

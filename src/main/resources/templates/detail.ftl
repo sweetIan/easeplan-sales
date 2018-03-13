@@ -33,7 +33,7 @@
     <div class="n-detail">
         ${item.detail}
     </div>
-    <#if user?? && user.role == 'buyer' && purchaseHistory?? && (purchaseHistory?size > 0)>
+        <#if user?? && user.role == 'buyer' && purchaseHistory?? && (purchaseHistory?size > 0)>
         <div class="m-tab m-tab-fw m-tab-simple f-cb">
             <h2>历史购买记录</h2>
         </div>
@@ -60,7 +60,7 @@
         </#list>
             </tbody>
         </table>
-    </#if>
+        </#if>
     </#if>
 </div>
 <#include "./include/footer.ftl">

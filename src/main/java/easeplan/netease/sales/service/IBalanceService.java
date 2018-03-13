@@ -14,18 +14,21 @@ import java.util.List;
 public interface IBalanceService {
     /**
      * 购买购物车内的所有内容
+     *
      * @return
      */
     void purchase();
 
     /**
      * 获取所有历史购买记录
+     *
      * @return
      */
     List<PurchasedItem> getPurchasedItemList();
 
     /**
      * 获取特定内容的购买记录
+     *
      * @param id
      * @return
      */

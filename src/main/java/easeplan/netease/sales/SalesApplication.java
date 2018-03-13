@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 @MapperScan("easeplan.netease.sales.mapper")
 public class SalesApplication {
     private static final Logger LOGGER = LoggerFactory.getLogger(SalesApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(SalesApplication.class, args);
     }

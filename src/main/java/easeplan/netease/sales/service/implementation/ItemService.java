@@ -58,6 +58,7 @@ public class ItemService implements IItemService {
 
     /**
      * 验证是否符合格式要求
+     *
      * @param itemDetail
      */
     private void verify(ItemDetail itemDetail) {

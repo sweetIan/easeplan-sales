@@ -120,7 +120,7 @@
         var file = fileSelect.files[0];
         var formData = new FormData();
         if (!file.type.match('image.*')) {
-            window.alert("絵");
+            window.alert("只能上传jpg/png/gif图片！");
             return;
         }
         formData.append('file', file, file.name);

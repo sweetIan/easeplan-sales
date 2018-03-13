@@ -14,6 +14,10 @@
 > mvn spring-boot:run
 - done
 
+# 账号密码
+- 买家 buyer reyub
+- 卖家 seller relles
+
 # 其他说明
 
 - 启动后会自动创建数据库表，并且添加一条内容，方便点着玩

@@ -31,8 +31,19 @@
             </div>
             <div class="fmitem">
                 <label class="fmlab">图片：</label>
+                <div class="fmipt" id="uploadType">
+                    <input name="pic" type="radio" value="url" checked=""> 图片地址
+                    <input name="pic" type="radio" value="file"> 本地上传
+                </div>
+            </div>
+            <div class="fmitem">
+                <label class="fmlab"></label>
                 <div class="fmipt">
-                    <input class="u-ipt ipt" id="image" <#if edit>value="${item.image}</#if>" placeholder="图片地址"/>
+                    <input id="image" class="u-ipt ipt" <#if edit>value="${item.image}</#if>" placeholder="图片地址"/>
+                </div>
+                <div id="uploadForm" class="fmipt" style="display:none;">
+                    <input id="fileSelect" class="u-ipt ipt" type="file" name="file" />
+                    <input id="uploadBtn" class="u-btn u-btn-primary" type="submit" value="上传" />
                 </div>
             </div>
             <div class="fmitem">
@@ -53,11 +64,12 @@
                 </div>
             </div>
         </div>
-        <span class="imgpre"><img src="<#if edit>${item.image}</#if>" alt="" id="imgpre"></span>
+        <span class="imgpre"><img id="imgpre" src="<#if edit>${item.image}</#if>" alt=""/></span>
     </div>
     </#if>
 </div>
 <#include "./include/footer.ftl">
 <script type="text/javascript" src="/static/js/edit.js"></script>
+<script type="text/javascript" src="/static/js/upload.js"></script>
 </body>
 </html>

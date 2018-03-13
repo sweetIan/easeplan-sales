@@ -9,6 +9,24 @@
     var imgpre = document.getElementById('imgpre');
     var isSubmitting = false;
 
+    var form = document.getElementById('uploadForm');
+    var uploadType = document.getElementById('uploadType');
+    uploadType.onclick = function (event) {
+        event = window.event || event;
+        var node = event.srcElement || event.target;
+        if(node.nodeName==="INPUT"){
+            if (node.value==='url') {
+                image.parentElement.style.display = "block";
+                form.style.display = "none";
+            } else {
+                form.style.display = "block";
+                image.parentElement.style.display = "none";
+            }
+            image.classList.remove("z-err");
+            form.classList.remove("z-err");
+        }
+    };
+
     var check = function () {
         var result = true;
         [
@@ -19,7 +37,7 @@
                 return value.length < 2 || value.length > 140
             }],
             [image, function (value) {
-                return value == '' || !(/^(http|https):\/\//.test(value) && /\.(jpg|gif|png)$/.test(value))
+                return value == ''
             }],
             [detail, function (value) {
                 return value.length < 2 || value.length > 1000

@@ -9,12 +9,19 @@ spring boot + spring mvc + mybatis + jwt
 
 # 运行说明
 
-- 需要 jdk8+, mvn, mysql
+- 需要 jdk8+, mysql
 - 先修改以下配置文件中的数据库配置
 > ./src/main/resources/application.properties
-- 记得在 mysql 中配置一个与上述修改一致的 database
-- 运行
-> mvn spring-boot:run
+- 记得在 mysql 中 create 一个与上述修改一致的 database
+- 根据运行环境运行以下任一条命令
+``` 
+# mvn installed
+mvn spring-boot:run
+# linux/macOS
+./mvnw spring-boot:run
+# windows
+./mvnw.cmd spring-boot:run
+```
 - done
 
 # 账号密码

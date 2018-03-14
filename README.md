@@ -2,7 +2,7 @@
 
 网易18年校招 JAVA 工程师入职前“通关大boss”作业的实现，大致就是实现一个单卖家、单买家的内容销售项目。
 
-详细要求见 http://easeplan.netease.com/#/detail/70
+[详细要求][1]
 
 # 主要技术框架
 spring boot + spring mvc + mybatis + jwt 
@@ -28,6 +28,9 @@ spring boot + spring mvc + mybatis + jwt
 
 # 引用说明
 
-- 直接引用了样例网站的 style.css, md5.js 文件
+- 直接使用了[样例网站][2]的 style.css, md5.js 文件
 - 因使用上述 css, freemarker 模板参考了样例网站的 html 结构
+
+[1]: http://easeplan.netease.com/#/detail/70
+[2]: http://59.111.100.242:8080/
 

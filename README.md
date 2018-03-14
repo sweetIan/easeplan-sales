@@ -20,7 +20,7 @@ mvn spring-boot:run
 # linux/macOS
 ./mvnw spring-boot:run
 # windows
-./mvnw.cmd spring-boot:run
+.\mvnw.cmd spring-boot:run
 ```
 - done
 

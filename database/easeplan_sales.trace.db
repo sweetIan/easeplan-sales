@@ -1,3 +1,0 @@
-2018-03-12 20:40:08 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Table "TEST" not found; SQL statement:
-select 1 from test [42102-196]
